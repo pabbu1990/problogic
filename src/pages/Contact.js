@@ -3,11 +3,11 @@ import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer';
 import {useDocTitle} from '../components/CustomHook';
 import axios from 'axios';
-// import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com';
 import Notiflix from 'notiflix';
 
 const Contact = () => {
-    useDocTitle('MLD | Molad e Konsult - Send us a message')
+    useDocTitle('ProbLogic | Send us a message')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -28,36 +28,24 @@ const Contact = () => {
     }
 
     const sendEmail = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         document.getElementById('submitBtn').disabled = true;
         document.getElementById('submitBtn').innerHTML = 'Loading...';
-        let fData = new FormData();
-        fData.append('first_name', firstName)
-        fData.append('last_name', lastName)
-        fData.append('email', email)
-        fData.append('phone_number', phone)
-        fData.append('message', message)
 
-        axios({
-            method: "post",
-            url: process.env.REACT_APP_CONTACT_API,
-            data: fData,
-            headers: {
-                'Content-Type':  'multipart/form-data'
-            }
-        })
-        .then(function (response) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_e580jip', 'template_8syp4e5', e.target, 'sYQjYlcZeOLgk1tD5')
+        .then((response) => {
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = 'send message';
-            clearInput()
-            //handle success
+            clearInput();
+            // window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
             Notiflix.Report.success(
                 'Success',
                 response.data.message,
                 'Okay',
             );
-        })
-        .catch(function (error) {
+        }, (error) => {
             document.getElementById('submitBtn').disabled = false;
             document.getElementById('submitBtn').innerHTML = 'send message';
             //handle error
@@ -72,8 +60,45 @@ const Contact = () => {
             if(response.data.errors !== null) {
                 setErrors(response.data.errors)
             }
-            
+            console.log(error.text);
         });
+
+        // axios({
+        //     method: "post",
+        //     url: process.env.REACT_APP_CONTACT_API,
+        //     data: fData,
+        //     headers: {
+        //         'Content-Type':  'multipart/form-data'
+        //     }
+        // })
+        // .then(function (response) {
+            // document.getElementById('submitBtn').disabled = false;
+            // document.getElementById('submitBtn').innerHTML = 'send message';
+            // clearInput()
+            // //handle success
+            // Notiflix.Report.success(
+            //     'Success',
+            //     response.data.message,
+            //     'Okay',
+            // );
+        // })
+        // .catch(function (error) {
+            // document.getElementById('submitBtn').disabled = false;
+            // document.getElementById('submitBtn').innerHTML = 'send message';
+            // //handle error
+            // const { response } = error;
+            // if(response.status === 500) {
+            //     Notiflix.Report.failure(
+            //         'An error occurred',
+            //         response.data.message,
+            //         'Okay',
+            //     );
+            // }
+            // if(response.data.errors !== null) {
+            //     setErrors(response.data.errors)
+            // }
+            
+        // });
     }
     return (
         <>
@@ -181,7 +206,7 @@ const Contact = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <h2 className="text-2xl">Office Address</h2>
-                                        <p className="text-gray-400">Ilo Awela, Ota, Ogun State</p>
+                                        <p className="text-gray-400">5956 W BREEZEWAY DR N RIDGEVILLE OH 44039</p>
                                     </div>
                                 </div>
                     
@@ -192,11 +217,12 @@ const Contact = () => {
 
                         <div className="flex flex-col">
                         <h2 className="text-2xl">Call Us</h2>
-                        <p className="text-gray-400">Tel: 08055384406</p>
+                        <p className="text-gray-400">Tel: 5053580510</p>
+                        <p className="text-gray-400">Mob: 8063176023</p>
                         
                             <div className='mt-5'>
                                 <h2 className="text-2xl">Send an E-mail</h2>
-                                <p className="text-gray-400">info@mld.ng</p>
+                                <p className="text-gray-400">hr@problogic.com</p>
                             </div>
                        
                         </div>
