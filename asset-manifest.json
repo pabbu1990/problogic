@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/problogic/static/css/main.a04c8f3c.css",
+    "main.js": "/problogic/static/js/main.226423cc.js",
+    "static/media/problogic.jpg": "/problogic/static/media/problogic.44ff8db62b98002195d9.jpg",
+    "static/media/consultation.svg": "/problogic/static/media/consultation.ede9466b3634733f30c8d1a1b7bbe939.svg",
+    "static/media/web-dev.svg": "/problogic/static/media/web-dev.fd61237124f5b922e412437caf61ea58.svg",
+    "static/media/hosting.svg": "/problogic/static/media/hosting.b755d3eebb287dde8fcd287cb1d5653e.svg",
+    "static/media/app.svg": "/problogic/static/media/app.3d550d02d3409ad587451a91e97e78fb.svg",
+    "static/media/kws.png": "/problogic/static/media/kws.877da8110793af2c3d27.png",
+    "static/media/Web-developer.svg": "/problogic/static/media/Web-developer.6c7276fff94ccaae45617195f0ef27ae.svg",
+    "static/media/footer.svg": "/problogic/static/media/footer.70b54bbe52a797ce69c1.svg",
+    "static/media/web.svg": "/problogic/static/media/web.bceccecdef8e71bd5a8d73effe14fdba.svg",
+    "index.html": "/problogic/index.html",
+    "static/media/hero-bg.svg": "/problogic/static/media/hero-bg.c3b4448a16ff1a8da834.svg",
+    "main.a04c8f3c.css.map": "/problogic/static/css/main.a04c8f3c.css.map",
+    "main.226423cc.js.map": "/problogic/static/js/main.226423cc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a04c8f3c.css",
+    "static/js/main.226423cc.js"
+  ]
+}
