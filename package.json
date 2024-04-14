@@ -2,7 +2,7 @@
   "name": "ProbLogic",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://pabbu1990.github.io/problogic",
+  "homepage": "https://pabbu1990.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
