@@ -24,7 +24,7 @@ const NavBar = () => {
         <nav className={`fixed top-0 w-full z-30 transition duration-300 ease-in-out mb-16 ${!top && 'bg-white shadow-lg'}`}>
             <div className="flex flex-row justify-between items-center py-2">
                 <div className="flex flex-row justify-center md:mx-12 items-center text-center font-semibold">
-                    <img class="prob-logic-logo-navbar" src={problogic} alt="client" />   
+                <HashLink smooth to="/#hero"><img class="prob-logic-logo-navbar" src={problogic} alt="client" /></HashLink>
                     <HashLink smooth to="/#hero"><h1 className="font-extrabold text-4xl text-blue-900">ProbLogic</h1></HashLink>
                     
                 </div>
