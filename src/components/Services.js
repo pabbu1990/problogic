@@ -7,7 +7,7 @@ import img4 from '../images/consultation.svg';
 const Services = () => {
 
     return (
-        <div id="services" className="bg-gray-100 py-12" >
+        <div id="services" className="bg-gray-100 py-24" >
             <section data-aos="zoom-in-down">
                     <div className="my-4 py-4">
                         <h2 className="my-2 text-center text-3xl text-blue-900 uppercase font-bold">services</h2>
@@ -30,7 +30,7 @@ const Services = () => {
                                     </p>
                                 </div>
                             </div>  
-                            
+
                             <div className="bg-white transition-all ease-in-out duration-400  overflow-hidden text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg shadow-2xl p-3 group">
                                 <div className="m-2 text-justify text-sm">
                                 <img alt="card img" className="rounded-t group-hover:scale-[1.15] transition duration-1000 ease-in-out" src={img} />
