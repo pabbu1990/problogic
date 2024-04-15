@@ -20,9 +20,7 @@ const Footer = () => {
                                 <h3 className="font-bold text-4xl mb-4 mt-4">ProbLogic</h3>
                             </div>
                             <div className='text-md font-medium text-gray-600'>
-                                <p>5956 W BREEZEWAY DR</p>
-                                <p>N RIDGEVILLE</p>
-                                <p>OH 44039</p>
+                                <p>North Ridgeville, OH</p>
                             </div>
                         </div>
                     </div>
