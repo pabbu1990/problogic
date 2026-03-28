@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProbLogic - Design B: Modern Tech Talent</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; color: #0f172a; background: #fff; }
+
+/* Nav */
+nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); z-index: 100; }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 22px; font-weight: 800; color: #0f172a; }
+.logo span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { text-decoration: none; color: #64748b; font-weight: 500; font-size: 14px; }
+.nav-cta { background: #0f172a; color: #fff !important; padding: 10px 22px; border-radius: 100px; font-weight: 600; font-size: 14px; }
+
+/* Hero */
+.hero { padding: 160px 24px 100px; text-align: center; position: relative; overflow: hidden; background: #fafbff; }
+.hero::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%); border-radius: 50%; }
+.hero-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #e2e8f0; border-radius: 100px; padding: 6px 16px; font-size: 13px; color: #6366f1; font-weight: 600; margin-bottom: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.hero-badge i { font-size: 10px; }
+.hero h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; color: #0f172a; }
+.hero h1 span { background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 18px; color: #64748b; line-height: 1.7; margin-bottom: 40px; }
+.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-dark { background: #0f172a; color: #fff; padding: 14px 28px; border-radius: 100px; font-weight: 700; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+.btn-dark:hover { background: #1e293b; transform: translateY(-1px); }
+.btn-outline { background: #fff; color: #0f172a; padding: 14px 28px; border-radius: 100px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1.5px solid #e2e8f0; }
+
+/* Logos */
+.logos { padding: 48px 24px; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+.logos-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.logos-inner p { font-size: 13px; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 24px; }
+.logo-row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; align-items: center; }
+.logo-placeholder { color: #cbd5e1; font-size: 16px; font-weight: 700; }
+
+/* Features */
+.features { padding: 96px 24px; }
+.features-inner { max-width: 1100px; margin: 0 auto; }
+.features-header { text-align: center; margin-bottom: 64px; }
+.features-header h2 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+.features-header p { color: #64748b; font-size: 17px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-card { background: #fafbff; border-radius: 16px; padding: 32px; border: 1px solid #f1f5f9; transition: all 0.3s; }
+.feature-card:hover { background: #fff; border-color: #c7d2fe; box-shadow: 0 12px 40px rgba(99,102,241,0.08); }
+.feature-emoji { font-size: 32px; margin-bottom: 16px; display: block; }
+.feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.feature-card p { color: #64748b; font-size: 15px; line-height: 1.6; }
+
+/* Tech Stack */
+.stack { padding: 96px 24px; background: #0f172a; color: #fff; }
+.stack-inner { max-width: 1100px; margin: 0 auto; }
+.stack h2 { text-align: center; font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+.stack .sub { text-align: center; color: #94a3b8; font-size: 17px; margin-bottom: 48px; }
+.stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stack-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; text-align: center; transition: all 0.3s; }
+.stack-item:hover { background: rgba(255,255,255,0.1); border-color: #6366f1; }
+.stack-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.stack-item p { color: #94a3b8; font-size: 13px; }
+
+/* Process */
+.process { padding: 96px 24px; }
+.process-inner { max-width: 1100px; margin: 0 auto; }
+.process h2 { text-align: center; font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 64px; }
+.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.tl-step { position: relative; padding: 32px; background: #fafbff; border-radius: 16px; border: 1px solid #f1f5f9; }
+.tl-num { position: absolute; top: -16px; left: 24px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.tl-step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; margin-top: 8px; }
+.tl-step p { color: #64748b; font-size: 14px; line-height: 1.6; }
+
+/* CTA */
+.cta { padding: 96px 24px; text-align: center; }
+.cta-box { max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 24px; padding: 64px 48px; color: #fff; }
+.cta-box h2 { font-size: 36px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
+.cta-box p { font-size: 17px; color: #e0e7ff; margin-bottom: 32px; }
+.btn-white { background: #fff; color: #6366f1; padding: 14px 32px; border-radius: 100px; font-weight: 700; font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+
+/* Footer */
+footer { background: #fafbff; border-top: 1px solid #f1f5f9; padding: 48px 24px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-left .logo { margin-bottom: 8px; }
+.footer-left p { color: #94a3b8; font-size: 13px; }
+.footer-right { display: flex; gap: 24px; }
+.footer-right a { color: #64748b; text-decoration: none; font-size: 14px; font-weight: 500; }
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 36px; }
+    .features-grid, .stack-grid, .timeline { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">prob<span>logic</span></div>
+        <div class="nav-links">
+            <a href="#features">Why Us</a>
+            <a href="#stack">Expertise</a>
+            <a href="#process">Process</a>
+            <a href="#contact" class="nav-cta">Talk to Us</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge"><i class="fas fa-circle"></i> Now serving clients nationwide</div>
+        <h1>Stop hiring.<br>Start <span>shipping.</span></h1>
+        <p>ProbLogic places senior software engineers with your team in under a week. Pre-vetted. Enterprise-experienced. Ready to contribute from day one.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-dark">Get matched with talent <i class="fas fa-arrow-right"></i></a>
+            <a href="#stack" class="btn-outline">See our expertise</a>
+        </div>
+    </div>
+</section>
+
+<section class="logos">
+    <div class="logos-inner">
+        <p>Engineers with experience at</p>
+        <div class="logo-row">
+            <span class="logo-placeholder">Fortune 500 Banks</span>
+            <span class="logo-placeholder">Top Insurance Firms</span>
+            <span class="logo-placeholder">Healthcare Leaders</span>
+            <span class="logo-placeholder">Enterprise SaaS</span>
+        </div>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="features-inner">
+        <div class="features-header">
+            <h2>Why teams choose ProbLogic</h2>
+            <p>We're not another body shop. Here's what makes us different.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-emoji">&#9889;</span>
+                <h3>48-Hour Matching</h3>
+                <p>Share your requirements, and we'll send 2-3 vetted profiles within 48 hours. No weeks of recruiting overhead.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-emoji">&#128170;</span>
+                <h3>Senior-Only Talent</h3>
+                <p>Every engineer has 5-15+ years of production experience. No juniors, no gambles. Proven professionals who deliver.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-emoji">&#128736;</span>
+                <h3>Technically Vetted</h3>
+                <p>Rigorous coding assessments and system design interviews. We don't send resumes — we send qualified engineers.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-emoji">&#127919;</span>
+                <h3>Domain Expertise</h3>
+                <p>Our engineers have worked in financial services, healthcare, and insurance. They understand your compliance and security requirements.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-emoji">&#128101;</span>
+                <h3>W2 Employees</h3>
+                <p>All contractors are our W2 employees. We handle payroll, benefits, background checks, and drug screening.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-emoji">&#128200;</span>
+                <h3>Flexible Engagements</h3>
+                <p>From 3-month projects to 12+ month staff augmentation. Remote, hybrid, or on-site. Scale up or down as needed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stack" id="stack">
+    <div class="stack-inner">
+        <h2>Our technical bench</h2>
+        <p class="sub">Engineers across the full modern stack, ready to deploy.</p>
+        <div class="stack-grid">
+            <div class="stack-item">
+                <h4>Backend</h4>
+                <p>Java, Spring Boot, Python, Django, FastAPI, Microservices</p>
+            </div>
+            <div class="stack-item">
+                <h4>Frontend</h4>
+                <p>React, Angular, TypeScript, Redux, Next.js</p>
+            </div>
+            <div class="stack-item">
+                <h4>Cloud & DevOps</h4>
+                <p>AWS, Azure, Kubernetes, Terraform, Docker, CI/CD</p>
+            </div>
+            <div class="stack-item">
+                <h4>Data</h4>
+                <p>Spark, Kafka, Airflow, Snowflake, PostgreSQL, MongoDB</p>
+            </div>
+            <div class="stack-item">
+                <h4>QA & Testing</h4>
+                <p>Selenium, Cypress, API Testing, Performance, SDET</p>
+            </div>
+            <div class="stack-item">
+                <h4>Architecture</h4>
+                <p>System Design, API Design, Event-Driven, Domain-Driven</p>
+            </div>
+            <div class="stack-item">
+                <h4>AI / ML</h4>
+                <p>Python, TensorFlow, LLM Integration, Data Pipelines</p>
+            </div>
+            <div class="stack-item">
+                <h4>Project Mgmt</h4>
+                <p>Agile, Scrum, JIRA, Confluence, Requirements Analysis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process" id="process">
+    <div class="process-inner">
+        <h2>Simple. Fast. Reliable.</h2>
+        <div class="timeline">
+            <div class="tl-step">
+                <div class="tl-num">1</div>
+                <h3>Tell us what you need</h3>
+                <p>Share the role, tech stack, team size, and timeline. A quick 15-minute call is all it takes to get started.</p>
+            </div>
+            <div class="tl-step">
+                <div class="tl-num">2</div>
+                <h3>Review matched profiles</h3>
+                <p>We send 2-3 pre-vetted candidates within 48 hours. Each comes with skills summary, assessment scores, and availability.</p>
+            </div>
+            <div class="tl-step">
+                <div class="tl-num">3</div>
+                <h3>Start building</h3>
+                <p>Interview, select, and onboard. Your new engineer joins within a week. We handle payroll and ongoing support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="contact">
+    <div class="cta-box">
+        <h2>Ready to scale your team?</h2>
+        <p>Tell us what you're building and we'll match you with the right engineers.</p>
+        <a href="mailto:hr@problogic.com" class="btn-white">Get started <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <div class="logo">prob<span>logic</span></div>
+            <p>&copy; 2026 ProbLogic LLC. North Ridgeville, Ohio.</p>
+        </div>
+        <div class="footer-right">
+            <a href="mailto:hr@problogic.com">hr@problogic.com</a>
+            <a href="tel:5053580510">(505) 358-0510</a>
+            <a href="https://www.linkedin.com/company/problogic/">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

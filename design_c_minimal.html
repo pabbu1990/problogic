@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProbLogic - Design C: Minimal Premium</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; color: #1a1a1a; background: #fffcf7; }
+h1, h2, h3 { font-family: 'Fraunces', serif; }
+
+/* Nav */
+nav { position: fixed; top: 0; width: 100%; background: rgba(255,252,247,0.95); backdrop-filter: blur(16px); z-index: 100; }
+.nav-inner { max-width: 1040px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 800; color: #1a1a1a; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { text-decoration: none; color: #737373; font-weight: 500; font-size: 15px; }
+.nav-links a:hover { color: #1a1a1a; }
+.nav-cta { color: #1a1a1a !important; font-weight: 600; border-bottom: 2px solid #1a1a1a; padding-bottom: 2px; border-radius: 0; }
+
+/* Hero */
+.hero { padding: 180px 24px 120px; text-align: center; }
+.hero-inner { max-width: 700px; margin: 0 auto; }
+.hero-tag { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #a3a3a3; font-weight: 600; margin-bottom: 28px; }
+.hero h1 { font-size: 60px; font-weight: 900; line-height: 1.08; margin-bottom: 28px; letter-spacing: -1.5px; color: #1a1a1a; }
+.hero p { font-size: 19px; color: #737373; line-height: 1.7; margin-bottom: 48px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.hero-cta { background: #1a1a1a; color: #fffcf7; padding: 16px 40px; border-radius: 100px; font-weight: 600; font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+.hero-cta:hover { background: #404040; }
+
+/* Divider */
+.divider { max-width: 1040px; margin: 0 auto; height: 1px; background: #e5e5e5; }
+
+/* Intro Section */
+.intro { padding: 96px 24px; }
+.intro-inner { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.intro h2 { font-size: 36px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.5px; }
+.intro p { color: #737373; font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+
+/* Numbers */
+.numbers { padding: 96px 24px; background: #1a1a1a; color: #fffcf7; }
+.numbers-inner { max-width: 1040px; margin: 0 auto; }
+.numbers h2 { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 64px; letter-spacing: -0.5px; }
+.numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.num-item { text-align: center; }
+.num-value { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; margin-bottom: 8px; color: #fffcf7; }
+.num-label { color: #a3a3a3; font-size: 14px; font-weight: 500; }
+
+/* Expertise */
+.expertise { padding: 96px 24px; }
+.expertise-inner { max-width: 1040px; margin: 0 auto; }
+.expertise h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; text-align: center; letter-spacing: -0.5px; }
+.expertise .sub { text-align: center; color: #737373; font-size: 17px; margin-bottom: 56px; }
+.exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.exp-item { display: flex; align-items: center; gap: 16px; padding: 24px; border: 1px solid #e5e5e5; border-radius: 12px; transition: all 0.2s; }
+.exp-item:hover { border-color: #a3a3a3; background: #fff; }
+.exp-dot { width: 10px; height: 10px; border-radius: 50%; background: #1a1a1a; flex-shrink: 0; }
+.exp-item h4 { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; }
+.exp-item p { font-size: 13px; color: #a3a3a3; margin-top: 2px; }
+
+/* How */
+.how { padding: 96px 24px; background: #faf7f2; }
+.how-inner { max-width: 1040px; margin: 0 auto; }
+.how h2 { font-size: 36px; font-weight: 800; margin-bottom: 64px; text-align: center; letter-spacing: -0.5px; }
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.how-step { text-align: center; }
+.how-num { font-family: 'Fraunces', serif; font-size: 56px; font-weight: 900; color: #e5e5e5; margin-bottom: 16px; line-height: 1; }
+.how-step h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.how-step p { color: #737373; font-size: 15px; line-height: 1.6; }
+
+/* Testimonial-style quote */
+.quote { padding: 96px 24px; text-align: center; }
+.quote-inner { max-width: 680px; margin: 0 auto; }
+.quote blockquote { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; line-height: 1.4; color: #1a1a1a; font-style: italic; margin-bottom: 24px; }
+.quote cite { color: #a3a3a3; font-size: 15px; font-style: normal; font-weight: 500; }
+
+/* CTA */
+.cta { padding: 96px 24px; text-align: center; }
+.cta-inner { max-width: 600px; margin: 0 auto; }
+.cta h2 { font-size: 40px; font-weight: 900; margin-bottom: 16px; letter-spacing: -0.5px; }
+.cta p { color: #737373; font-size: 17px; margin-bottom: 36px; }
+.cta-link { background: #1a1a1a; color: #fffcf7; padding: 16px 40px; border-radius: 100px; font-weight: 600; font-size: 16px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+
+/* Footer */
+footer { border-top: 1px solid #e5e5e5; padding: 40px 24px; }
+.footer-inner { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-inner p { color: #a3a3a3; font-size: 13px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: #737373; text-decoration: none; font-size: 14px; }
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 38px; }
+    .intro-inner, .exp-grid, .numbers-grid, .how-steps { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div class="logo">ProbLogic</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#process">Process</a>
+            <a href="#contact" class="nav-cta">Get in touch &rarr;</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-tag">IT Staffing & Talent Solutions</div>
+        <h1>The engineers your team has been waiting for.</h1>
+        <p>We place senior software engineers with 5-15+ years of hands-on experience. Vetted, proven, ready to build.</p>
+        <a href="#contact" class="hero-cta">Start a conversation <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="intro" id="about">
+    <div class="intro-inner">
+        <div>
+            <h2>We're not a staffing agency. We're your talent partner.</h2>
+            <p>ProbLogic works directly with engineering leaders to place senior, technically-vetted contractors where they're needed most. No resume flooding. No junior resources. No wasted interviews.</p>
+            <p>Every engineer in our network has passed rigorous technical assessments covering system design, coding proficiency, and domain knowledge. We only represent people we'd hire ourselves.</p>
+        </div>
+        <div>
+            <h2>Built for engineering teams that move fast.</h2>
+            <p>You don't have months to fill a critical role. We deliver 2-3 qualified profiles within 48 hours of your first call. Our engineers start within a week and contribute from day one.</p>
+            <p>We handle everything — payroll, benefits, background checks, compliance — so your team can focus on building product, not managing vendors.</p>
+        </div>
+    </div>
+</section>
+
+<section class="numbers">
+    <div class="numbers-inner">
+        <h2>By the numbers</h2>
+        <div class="numbers-grid">
+            <div class="num-item">
+                <div class="num-value">50+</div>
+                <div class="num-label">Senior engineers in our network</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">48hr</div>
+                <div class="num-label">Average time to first profiles</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">8.5</div>
+                <div class="num-label">Average years of experience</div>
+            </div>
+            <div class="num-item">
+                <div class="num-value">100%</div>
+                <div class="num-label">W2 employees, fully vetted</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="expertise" id="expertise">
+    <div class="expertise-inner">
+        <h2>Technical depth across the stack</h2>
+        <p class="sub">Senior engineers in the technologies your team actually uses.</p>
+        <div class="exp-grid">
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>Full Stack Java</h4>
+                    <p>Spring Boot, Microservices, REST APIs, PostgreSQL</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>Python Engineering</h4>
+                    <p>Django, FastAPI, Data Pipelines, Automation</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>Frontend Development</h4>
+                    <p>React, Angular, TypeScript, Redux, Next.js</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>Cloud & DevOps</h4>
+                    <p>AWS, Azure, Kubernetes, Terraform, CI/CD</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>Data Engineering</h4>
+                    <p>Spark, Kafka, Airflow, Snowflake, ETL Pipelines</p>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-dot"></div>
+                <div>
+                    <h4>QA & Automation</h4>
+                    <p>Selenium, Cypress, API Testing, Performance, SDET</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how" id="process">
+    <div class="how-inner">
+        <h2>How we work</h2>
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="how-num">01</div>
+                <h3>Discovery</h3>
+                <p>A 15-minute conversation to understand your technical requirements, team dynamics, and timeline. That's all we need to start.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">02</div>
+                <h3>Matching</h3>
+                <p>Within 48 hours, we present 2-3 candidates who match your requirements. Each profile includes assessment results and relevant project history.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">03</div>
+                <h3>Delivery</h3>
+                <p>After your interviews, the selected engineer starts within a week. We handle onboarding, payroll, and ongoing check-ins to ensure success.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quote">
+    <div class="quote-inner">
+        <blockquote>"The best staffing firms don't just fill roles. They understand the technology, the team, and the urgency — then deliver people who actually fit."</blockquote>
+        <cite>Our approach at ProbLogic</cite>
+    </div>
+</section>
+
+<section class="cta" id="contact">
+    <div class="cta-inner">
+        <h2>Let's talk.</h2>
+        <p>Tell us about the role you're trying to fill. We'll let you know within a day if we can help.</p>
+        <a href="mailto:hr@problogic.com" class="cta-link">hr@problogic.com <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>&copy; 2026 ProbLogic LLC. North Ridgeville, Ohio.</p>
+        <div class="footer-links">
+            <a href="mailto:hr@problogic.com">Email</a>
+            <a href="tel:5053580510">(505) 358-0510</a>
+            <a href="https://www.linkedin.com/company/problogic/">LinkedIn</a>
+            <a href="#">Privacy</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
