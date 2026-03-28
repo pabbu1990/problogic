@@ -5,6 +5,7 @@ import Intro from '../components/Intro';
 import Services from '../components/Services';
 import TechExpertise from '../components/TechExpertise';
 import HowItWorks from '../components/HowItWorks';
+import CaseStudies from '../components/CaseStudies';
 import Cta from '../components/Cta';
 import Footer from '../components/Footer';
 
@@ -17,6 +18,7 @@ const Home = () => {
             <Services />
             <TechExpertise />
             <HowItWorks />
+            <CaseStudies />
             <Cta />
             <Footer />
         </>
