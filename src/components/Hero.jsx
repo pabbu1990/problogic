@@ -1,49 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import NavBar from '../components/Navbar/NavBar';
-import heroImg from '../images/web-dev.svg';
 import { HashLink } from 'react-router-hash-link';
 
 const Hero = () => {
     return (
-        <>
-            <div className="hero" id='hero'>
-                <div>
-                    <NavBar />
-                </div>
-                
-                <div className="m-auto overflow-hidden mx-4 mt-8 lg:mt-8 p-2 md:p-12 h-5/6" data-aos="zoom-in">
+        <div className="hero-gradient" id="hero">
+            <NavBar />
+            <div className="relative z-10 max-w-6xl mx-auto px-6 pt-40 pb-24 md:pt-48 md:pb-32">
+                <div className="max-w-2xl" data-aos="fade-up" data-aos-duration="800">
 
-                    <div id='hero' className="flex flex-col lg:flex-row py-16 justify-between text-center lg:text-left">
-                        <div className="lg:w-1/2 flex flex-col justify-center" data-aos="zoom-in" data-aos-delay="200">
-                            <h1 className="mb-5 md:text-5xl text-3xl font-bold text-blue-900">
-                            {/* We build digital solutions to help businesses scale */}
-                                Software solutions for your unique business needs
-                            </h1>
-                            <div className="text-xl font-semibold tracking-tight mb-5 text-gray-500">We are a team of highly motivated and skilled developers dedicated to delivering only the best software.</div>
-                            <div className="mb-4 space-x-0 md:space-x-2 md:mb-8">
-                                <HashLink smooth to="/#about" className="text-white bg-blue-900 hover:bg-blue-800 inline-flex items-center justify-center w-full px-6 py-3 my-4 text-lg shadow-xl rounded-2xl sm:w-auto sm:mb-0">
-                                    Learn more
-                                    <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                                </HashLink>
-                                {/* <Link to="/contact" className="text-white bg-blue-900 hover:bg-blue-800 inline-flex items-center justify-center w-full px-6 py-3 my-4 text-lg shadow-xl rounded-2xl sm:w-auto sm:mb-0">
-                                    Get Started
-                                    <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                                </Link> */}
-                                {/* <a href="#_" className="inline-flex items-center justify-center w-full px-6 py-3 my-4 text-lg text-white bg-gray-500 hover:bg-gray-400 shadow-xl rounded-2xl sm:w-auto sm:mb-0">
-                                    Learn More
-                                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                                </a> */}
-                            </div>
-                        </div>
-                        <div className="flex lg:justify-end w-full lg:w-1/2" data-aos="fade-up" data-aos-delay="700">
-                            <img alt="card img" className="rounded-t float-right duration-1000 w-full" src={heroImg} />
-                        </div>
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-15 rounded-full px-4 py-2 mb-8">
+                        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span className="text-blue-200 text-sm font-medium">Actively placing engineers nationwide</span>
+                    </div>
+
+                    {/* Headline */}
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                        Senior Tech Talent,{' '}
+                        <span className="gradient-text">Ready in Days.</span>
+                    </h1>
+
+                    {/* Subheadline */}
+                    <p className="text-lg md:text-xl text-blue-200 leading-relaxed mb-10 max-w-xl">
+                        ProbLogic provides pre-vetted, senior-level software engineers on a contract basis.
+                        Every candidate has 5-15+ years of enterprise experience and passes rigorous technical assessments.
+                    </p>
+
+                    {/* CTA Buttons */}
+                    <div className="flex flex-wrap gap-4">
+                        <HashLink
+                            smooth to="/#contact"
+                            className="inline-flex items-center gap-2 bg-white text-gray-900 font-bold text-base px-8 py-4 rounded-lg hover:bg-blue-50 transition-all duration-200 shadow-lg"
+                        >
+                            Schedule a Call
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </HashLink>
+                        <HashLink
+                            smooth to="/#expertise"
+                            className="inline-flex items-center gap-2 text-white font-semibold text-base px-8 py-4 rounded-lg border-2 border-white border-opacity-25 hover:border-opacity-50 transition-all duration-200"
+                        >
+                            View Our Talent
+                        </HashLink>
                     </div>
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default Hero;

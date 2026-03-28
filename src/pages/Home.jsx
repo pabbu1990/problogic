@@ -1,27 +1,26 @@
 import React from 'react';
-import Clients from '../components/Clients';
+import Hero from '../components/Hero';
+import TrustBar from '../components/TrustBar';
+import Intro from '../components/Intro';
+import Services from '../components/Services';
+import TechExpertise from '../components/TechExpertise';
+import HowItWorks from '../components/HowItWorks';
 import Cta from '../components/Cta';
 import Footer from '../components/Footer';
-import Hero from '../components/Hero';
-import Intro from '../components/Intro';
-import Portfolio from '../components/Portfolio';
-import Services from '../components/Services';
-
 
 const Home = () => {
     return (
         <>
             <Hero />
+            <TrustBar />
             <Intro />
             <Services />
-            {/* <Portfolio /> */}
-            {/* <Clients /> */}
-            <Cta/>
+            <TechExpertise />
+            <HowItWorks />
+            <Cta />
             <Footer />
         </>
-
-    )
-}
+    );
+};
 
 export default Home;
-

@@ -31,7 +31,7 @@ function App() {
     });
   }, []);
 
-  useDocTitle("ProbLogic | Software Consulting And Development Services");
+  useDocTitle("ProbLogic | Senior Tech Talent, Ready in Days");
 
   return (
     <>

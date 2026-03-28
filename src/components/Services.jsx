@@ -1,98 +1,110 @@
 import React from 'react';
-import img from '../images/web.svg'; 
-import img2 from '../images/app.svg';
-import img3 from '../images/hosting.svg';
-import img4 from '../images/consultation.svg';
+
+const services = [
+    {
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        ),
+        title: 'Staff Augmentation',
+        description: 'Scale your engineering team quickly with senior contractors who integrate seamlessly. Available for 6-12+ month engagements, remote or on-site.',
+    },
+    {
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+        ),
+        title: 'Project-Based Teams',
+        description: 'Need a full squad? We assemble cross-functional teams of developers, QA, and DevOps engineers tailored to your project requirements.',
+    },
+    {
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+        ),
+        title: 'Direct Placement',
+        description: 'Looking for permanent hires? We source, vet, and present senior candidates who match your technical requirements and team culture.',
+    },
+];
+
+const whyUs = [
+    {
+        icon: '⚡',
+        title: '48-Hour Matching',
+        desc: 'Share your requirements, get 2-3 vetted profiles within 48 hours. No weeks of recruiting overhead.',
+    },
+    {
+        icon: '🛡️',
+        title: 'Technically Vetted',
+        desc: 'Rigorous coding assessments and system design interviews. We send qualified engineers, not just resumes.',
+    },
+    {
+        icon: '🏢',
+        title: 'Domain Expertise',
+        desc: 'Engineers with hands-on experience in financial services, healthcare, insurance, and enterprise SaaS.',
+    },
+    {
+        icon: '📋',
+        title: 'We Handle Everything',
+        desc: 'Payroll, benefits, background checks, drug screening, and compliance. Your team focuses on building product.',
+    },
+];
 
 const Services = () => {
-
     return (
-        <div id="services" className="bg-gray-100 py-24" >
-            <section data-aos="zoom-in-down">
-                    <div className="my-4 py-4">
-                        <h2 className="my-2 text-center text-3xl text-blue-900 uppercase font-bold">services</h2>
-                        
-                        <div className='flex justify-center'>
-                            <div className='w-24 border-b-4 border-blue-900'></div>
-                        </div>
-                        <h2 className="mt-4 mx-12 text-center text-xl lg:text-2xl font-semibold text-blue-900">We are deeply committed to the growth and success of our clients.</h2>
-                    </div>
+        <div id="services" className="py-20 md:py-28">
+            {/* Services Section */}
+            <section className="max-w-6xl mx-auto px-6">
+                <div className="text-center mb-16" data-aos="fade-up">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+                        How We Help
+                    </h2>
+                    <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                        Flexible engagement models designed for how modern engineering teams actually work.
+                    </p>
+                </div>
 
-                    <div className="px-12" data-aos="fade-down" data-aos-delay="600">
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        <div className="bg-white transition-all ease-in-out duration-400  overflow-hidden text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg shadow-2xl p-3 group">
-                                <div className="m-2 text-justify text-sm">
-                                <img alt="card img" className="rounded-t group-hover:scale-[1.15] transition duration-1000 ease-in-out" src={img4} />
-                                    <h2 className="font-semibold my-4 text-2xl text-center ">IT Consulting</h2>
-                                    <p className="text-md font-medium">
-                                        Our engineers at ProbLogic are highly skilled in their area of expertise. Do you have a requirement for a product that you want to build but do not want to hire engineers full time?
-                                            Call us anytime and we have a lot of highly skilled engineers that can come in and get the job done for you!
-                                    </p>
-                                </div>
-                            </div>  
-
-                            <div className="bg-white transition-all ease-in-out duration-400  overflow-hidden text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg shadow-2xl p-3 group">
-                                <div className="m-2 text-justify text-sm">
-                                <img alt="card img" className="rounded-t group-hover:scale-[1.15] transition duration-1000 ease-in-out" src={img} />
-                                    <h2 className="font-semibold my-4 text-2xl text-center">Web Development</h2>
-                                    <p className="text-md font-medium">
-                                        We specialize in creating and optimizing high-quality, custom websites for businesses and organizations of all sizes. Building mobile-friendly and easy-to-use websites and applications for clients.
-                                    </p>
-                                </div>
+                <div className="grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
+                    {services.map((service, index) => (
+                        <div key={index} className="card-hover bg-white rounded-xl p-8 border border-gray-100 hover:border-blue-200">
+                            <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-5">
+                                {service.icon}
                             </div>
-
-                            <div className="bg-white transition-all ease-in-out duration-400  overflow-hidden text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg shadow-2xl p-3 group">
-                                <div className="m-2 text-justify text-sm">
-                                <img alt="card img" className="rounded-t group-hover:scale-[1.15] transition duration-1000 ease-in-out" src={img2} />
-                                    <h2 className="font-semibold my-4 text-2xl text-center">Mobile App Development</h2>
-                                    <p className="text-md font-medium">
-                                        We develop high-quality, custom cross-platform mobile applications that are robust and optimized for performance, scalability, and accessibility.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="bg-white transition-all ease-in-out duration-400  overflow-hidden text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg shadow-2xl p-3 group">
-                                <div className="m-2 text-justify text-sm">
-                                    <img alt="card img" className="rounded-t group-hover:scale-[1.15] transition duration-1000 ease-in-out" src={img3} />
-                                    <h2 className="font-semibold my-4 text-2xl text-center ">Domain and Hosting Services</h2>
-                                    <p className="text-md font-medium">
-                                        We provide domain registration and web hosting services to individuals and organizations to enable them gain visibility in the digital space.
-                                    </p>
-                                </div>
-                            </div>                  
+                            <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                            <p className="text-gray-500 leading-relaxed">{service.description}</p>
                         </div>
-                    </div>
+                    ))}
+                </div>
             </section>
 
-            <section>
-                <div className="m-auto max-w-6xl p-2 md:p-12 h-5/6">
-                    <div className="flex flex-col-reverse lg:flex-row py-8 justify-between lg:text-left" data-aos="zoom-out">
-                        <div className="lg:w-1/2 flex flex-col lg:mx-4 justify-center">
-                            <div className='text-blue-900 mb-4'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" className='fill-current'><path d="M2 12h2a7.986 7.986 0 0 1 2.337-5.663 7.91 7.91 0 0 1 2.542-1.71 8.12 8.12 0 0 1 6.13-.041A2.488 2.488 0 0 0 17.5 7C18.886 7 20 5.886 20 4.5S18.886 2 17.5 2c-.689 0-1.312.276-1.763.725-2.431-.973-5.223-.958-7.635.059a9.928 9.928 0 0 0-3.18 2.139 9.92 9.92 0 0 0-2.14 3.179A10.005 10.005 0 0 0 2 12zm17.373 3.122c-.401.952-.977 1.808-1.71 2.541s-1.589 1.309-2.542 1.71a8.12 8.12 0 0 1-6.13.041A2.488 2.488 0 0 0 6.5 17C5.114 17 4 18.114 4 19.5S5.114 22 6.5 22c.689 0 1.312-.276 1.763-.725A9.965 9.965 0 0 0 12 22a9.983 9.983 0 0 0 9.217-6.102A9.992 9.992 0 0 0 22 12h-2a7.993 7.993 0 0 1-.627 3.122z"></path><path d="M12 7.462c-2.502 0-4.538 2.036-4.538 4.538S9.498 16.538 12 16.538s4.538-2.036 4.538-4.538S14.502 7.462 12 7.462zm0 7.076c-1.399 0-2.538-1.139-2.538-2.538S10.601 9.462 12 9.462s2.538 1.139 2.538 2.538-1.139 2.538-2.538 2.538z"></path></svg>
-                            </div>
-                            <h3 className="text-3xl  text-blue-900 
-                            font-bold">We <span className='font-black'>Build</span></h3>
+            {/* Why Choose Us */}
+            <section className="max-w-6xl mx-auto px-6 mt-24">
+                <div className="text-center mb-16" data-aos="fade-up">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+                        Why Teams Choose ProbLogic
+                    </h2>
+                    <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                        We're not another staffing agency. Here's what makes us different.
+                    </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5" data-aos="fade-up" data-aos-delay="200">
+                    {whyUs.map((item, index) => (
+                        <div key={index} className="card-hover flex gap-5 bg-gray-50 rounded-xl p-6 border border-gray-100 hover:bg-white hover:border-blue-200">
+                            <div className="text-3xl flex-shrink-0 mt-1">{item.icon}</div>
                             <div>
-                                <p className='my-3 text-xl text-gray-600 font-semibold'>
-                                    With over 10 years experience in software analysis and design and a deep understanding of the latest IT trends and solutions, we provide customized recommendations and strategies to help you improve your operations, reduce costs, and increase efficiency.
-                                </p>
+                                <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                             </div>
                         </div>
-                        <div className="lg:w-1/2 flex flex-col lg:mx-4 justify-center">
-                            <div className='text-blue-900 mb-4'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" className='fill-current'><path d="m7.375 16.781 1.25-1.562L4.601 12l4.024-3.219-1.25-1.562-5 4a1 1 0 0 0 0 1.562l5 4zm9.25-9.562-1.25 1.562L19.399 12l-4.024 3.219 1.25 1.562 5-4a1 1 0 0 0 0-1.562l-5-4zm-1.649-4.003-4 18-1.953-.434 4-18z"></path></svg>
-                            </div>
-                            <h3 className="text-3xl  text-blue-900 font-bold">We <span className='font-black'>Collaborate</span></h3>
-                            <div>
-                                <p className='my-3 text-xl text-gray-600 font-semibold'>We can collaborate with your existing tech team to scale existing software applications or design customized software applications that suits your everyday need and simplifies various processes.</p>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </section>
         </div>
-    )
-}
+    );
+};
 
 export default Services;

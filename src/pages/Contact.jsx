@@ -1,254 +1,221 @@
 import React, { useState } from 'react';
 import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer';
-import {useDocTitle} from '../components/CustomHook';
-import axios from 'axios';
+import { useDocTitle } from '../components/CustomHook';
 import emailjs from 'emailjs-com';
 import Notiflix from 'notiflix';
 
 const Contact = () => {
-    useDocTitle('ProbLogic | Send us a message')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [message, setMessage] = useState('')
-    const [errors, setErrors] = useState([])
+    useDocTitle('ProbLogic | Contact Us');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
+    const [errors, setErrors] = useState([]);
 
-    const clearErrors = () => {
-        setErrors([])
-    }
-
+    const clearErrors = () => setErrors([]);
     const clearInput = () => {
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhone('')
-        setMessage('')
-    }
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+    };
 
     const sendEmail = (e) => {
-        // e.preventDefault();
-        document.getElementById('submitBtn').disabled = true;
-        document.getElementById('submitBtn').innerHTML = 'Loading...';
-
         e.preventDefault();
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').innerHTML = 'Sending...';
 
         emailjs.sendForm('service_e580jip', 'template_8syp4e5', e.target, 'sYQjYlcZeOLgk1tD5')
-        .then((response) => {
-            document.getElementById('submitBtn').disabled = false;
-            document.getElementById('submitBtn').innerHTML = 'send message';
-            clearInput();
-            // window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
-            Notiflix.Report.success(
-                'Success',
-                response.data.message,
-                'Okay',
-            );
-        }, (error) => {
-            document.getElementById('submitBtn').disabled = false;
-            document.getElementById('submitBtn').innerHTML = 'send message';
-            //handle error
-            const { response } = error;
-            if(response.status === 500) {
-                Notiflix.Report.failure(
-                    'An error occurred',
-                    response.data.message,
-                    'Okay',
-                );
-            }
-            if(response.data.errors !== null) {
-                setErrors(response.data.errors)
-            }
-            console.log(error.text);
-        });
+            .then((response) => {
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerHTML = 'Send Message';
+                clearInput();
+                Notiflix.Report.success('Success', response.data.message, 'Okay');
+            }, (error) => {
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerHTML = 'Send Message';
+                const { response } = error;
+                if (response.status === 500) {
+                    Notiflix.Report.failure('An error occurred', response.data.message, 'Okay');
+                }
+                if (response.data.errors !== null) {
+                    setErrors(response.data.errors);
+                }
+            });
+    };
 
-        // axios({
-        //     method: "post",
-        //     url: process.env.REACT_APP_CONTACT_API,
-        //     data: fData,
-        //     headers: {
-        //         'Content-Type':  'multipart/form-data'
-        //     }
-        // })
-        // .then(function (response) {
-            // document.getElementById('submitBtn').disabled = false;
-            // document.getElementById('submitBtn').innerHTML = 'send message';
-            // clearInput()
-            // //handle success
-            // Notiflix.Report.success(
-            //     'Success',
-            //     response.data.message,
-            //     'Okay',
-            // );
-        // })
-        // .catch(function (error) {
-            // document.getElementById('submitBtn').disabled = false;
-            // document.getElementById('submitBtn').innerHTML = 'send message';
-            // //handle error
-            // const { response } = error;
-            // if(response.status === 500) {
-            //     Notiflix.Report.failure(
-            //         'An error occurred',
-            //         response.data.message,
-            //         'Okay',
-            //     );
-            // }
-            // if(response.data.errors !== null) {
-            //     setErrors(response.data.errors)
-            // }
-            
-        // });
-    }
     return (
         <>
-            <div>
+            <div className="hero-gradient">
                 <NavBar />
-            </div>
-            <div id='contact' className="flex justify-center items-center mt-8 w-full bg-white py-12 lg:py-24 ">
-                <div className="container mx-auto my-8 px-4 lg:px-20" data-aos="zoom-in">
-
-                <form onSubmit={sendEmail}>
-
-                    <div className="w-full bg-white p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
-                        <div className="flex">
-                            <h1 className="font-bold text-center lg:text-left text-blue-900 uppercase text-4xl">Send us a message</h1>
-                        </div>
-                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-                                <div>
-                                    <input 
-                                        name="first_name" 
-                                        className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                        type="text" 
-                                        placeholder="First Name*" 
-                                        value={firstName}
-                                        onChange={(e)=> setFirstName(e.target.value)}
-                                        onKeyUp={clearErrors}
-                                    />
-                                    {errors && 
-                                        <p className="text-red-500 text-sm">{errors.first_name}</p>
-                                    }
-                                </div>
-                                
-                                <div>
-                                    <input 
-                                        name="last_name" 
-                                        className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                        type="text" 
-                                        placeholder="Last Name*"
-                                        value={lastName}
-                                        onChange={(e)=> setLastName(e.target.value)}
-                                        onKeyUp={clearErrors}
-                                    />
-                                    {errors && 
-                                        <p className="text-red-500 text-sm">{errors.last_name}</p>
-                                    }
-                                </div>
-
-                                <div>
-                                    <input 
-                                        name="email"
-                                        className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                        type="email" 
-                                        placeholder="Email*"
-                                        value={email}
-                                        onChange={(e)=> setEmail(e.target.value)}
-                                        onKeyUp={clearErrors}   
-                                    />
-                                    {errors && 
-                                        <p className="text-red-500 text-sm">{errors.email}</p>
-                                    }
-                                </div>
-
-                                <div>
-                                    <input
-                                        name="phone_number" 
-                                        className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                        type="number" 
-                                        placeholder="Phone*"
-                                        value={phone}
-                                        onChange={(e)=> setPhone(e.target.value)}
-                                        onKeyUp={clearErrors}
-                                    />
-                                    {errors && 
-                                        <p className="text-red-500 text-sm">{errors.phone_number}</p>
-                                    }
-                                </div>
-                        </div>
-                        <div className="my-4">
-                            <textarea 
-                                name="message" 
-                                placeholder="Message*" 
-                                className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                                value={message}
-                                onChange={(e)=> setMessage(e.target.value)}
-                                onKeyUp={clearErrors}
-                            ></textarea>
-                            {errors && 
-                                <p className="text-red-500 text-sm">{errors.message}</p>
-                            }
-                        </div>
-                        {/* <p className='text-sm'>* By providing a telephone number and submitting this form you are consenting to be contacted by SMS text message. Message & data rates may apply. You can reply STOP to opt-out of further messaging.</p>
-                        <br/> */}
-                        <div className="my-2 w-1/2 lg:w-2/4">
-                            <button type="submit" id="submitBtn" className="uppercase text-sm font-bold tracking-wide bg-gray-500 hover:bg-blue-900 text-gray-100 p-3 rounded-lg w-full 
-                                    focus:outline-none focus:shadow-outline">
-                                Send Message
-                            </button>
-                        </div>
+                <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-16">
+                    <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3">
+                        Get in Touch
+                    </h1>
+                    <p className="text-lg text-blue-200 max-w-xl">
+                        Tell us about your staffing needs. We'll respond within one business day.
+                    </p>
                 </div>
-                </form>
-                        <div
-                            className="w-full  lg:-mt-96 lg:w-2/6 px-8 py-6 ml-auto bg-blue-900 rounded-2xl">
-                            <div className="flex flex-col text-white">
-                                
-                                <div className="flex my-4 w-2/3 lg:w-3/4">
-                                    <div className="flex flex-col">
-                                        <i className="fas fa-map-marker-alt pt-2 pr-2" />
+            </div>
+
+            <div className="max-w-6xl mx-auto px-6 py-16">
+                <div className="grid lg:grid-cols-3 gap-12">
+                    {/* Form */}
+                    <div className="lg:col-span-2">
+                        <form onSubmit={sendEmail}>
+                            <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 shadow-sm">
+                                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a message</h2>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input
+                                            name="first_name"
+                                            className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            type="text"
+                                            placeholder="John"
+                                            value={firstName}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                            onKeyUp={clearErrors}
+                                        />
+                                        {errors && <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>}
                                     </div>
-                                    <div className="flex flex-col">
-                                        <h2 className="text-2xl">Office Address</h2>
-                                        <p className="text-gray-400">North Ridgeville, OH</p>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input
+                                            name="last_name"
+                                            className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            type="text"
+                                            placeholder="Smith"
+                                            value={lastName}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                            onKeyUp={clearErrors}
+                                        />
+                                        {errors && <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>}
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <input
+                                            name="email"
+                                            className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            type="email"
+                                            placeholder="john@company.com"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            onKeyUp={clearErrors}
+                                        />
+                                        {errors && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                        <input
+                                            name="phone_number"
+                                            className="w-full bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                            type="tel"
+                                            placeholder="(555) 000-0000"
+                                            value={phone}
+                                            onChange={(e) => setPhone(e.target.value)}
+                                            onKeyUp={clearErrors}
+                                        />
+                                        {errors && <p className="text-red-500 text-xs mt-1">{errors.phone_number}</p>}
                                     </div>
                                 </div>
-                    
-                    <div className="flex my-4 w-2/3 lg:w-1/2">
-                        <div className="flex flex-col">
-                        <i className="fas fa-phone-alt pt-2 pr-2" />
-                        </div>
 
-                        <div className="flex flex-col">
-                        <h2 className="text-2xl">Call Us</h2>
-                        <p className="text-gray-400">Tel: 5053580510</p>
-                        <p className="text-gray-400">Mob: 8063176023</p>
-                        
-                            <div className='mt-5'>
-                                <h2 className="text-2xl">Send an E-mail</h2>
-                                <p className="text-gray-400">hr@problogic.com</p>
+                                <div className="mt-5">
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
+                                    <textarea
+                                        name="message"
+                                        className="w-full h-32 bg-gray-50 text-gray-900 p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                                        placeholder="Tell us about the roles you're looking to fill, your tech stack, timeline, etc."
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        onKeyUp={clearErrors}
+                                    />
+                                    {errors && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+                                </div>
+
+                                <div className="mt-6">
+                                    <button
+                                        type="submit"
+                                        id="submitBtn"
+                                        className="bg-gray-900 hover:bg-gray-800 text-white font-bold text-sm px-8 py-3.5 rounded-lg transition-all duration-200 inline-flex items-center gap-2"
+                                    >
+                                        Send Message
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                       
+                        </form>
+                    </div>
+
+                    {/* Contact Info Sidebar */}
+                    <div>
+                        <div className="bg-gray-900 rounded-2xl p-8 text-white">
+                            <h3 className="text-xl font-bold mb-6">Contact Info</h3>
+
+                            <div className="space-y-6">
+                                <div>
+                                    <div className="text-sm text-gray-400 mb-1">Email</div>
+                                    <a href="mailto:hr@problogic.com" className="text-white font-medium hover:text-blue-300 transition-colors">
+                                        hr@problogic.com
+                                    </a>
+                                </div>
+
+                                <div>
+                                    <div className="text-sm text-gray-400 mb-1">Phone</div>
+                                    <a href="tel:5053580510" className="text-white font-medium hover:text-blue-300 transition-colors">
+                                        (505) 358-0510
+                                    </a>
+                                </div>
+
+                                <div>
+                                    <div className="text-sm text-gray-400 mb-1">Location</div>
+                                    <p className="text-white font-medium">North Ridgeville, OH</p>
+                                </div>
+
+                                <div className="pt-4 border-t border-white border-opacity-10">
+                                    <div className="text-sm text-gray-400 mb-3">Connect</div>
+                                    <div className="flex gap-3">
+                                        <a href="https://www.linkedin.com/company/problogic/" target="_blank" rel="noreferrer"
+                                            className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-opacity-20 transition-all">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" className="fill-current">
+                                                <circle cx="4.983" cy="5.009" r="2.188"></circle>
+                                                <path d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z"></path>
+                                            </svg>
+                                        </a>
+                                        <a href="https://twitter.com/Prob_Logic" target="_blank" rel="noreferrer"
+                                            className="w-9 h-9 bg-white bg-opacity-10 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-opacity-20 transition-all">
+                                            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Quick note */}
+                        <div className="mt-6 bg-blue-50 rounded-xl p-6 border border-blue-100">
+                            <h4 className="text-sm font-bold text-blue-900 mb-2">Typical Response Time</h4>
+                            <p className="text-sm text-blue-700">
+                                We respond to all inquiries within one business day. For urgent staffing needs, call us directly.
+                            </p>
                         </div>
                     </div>
-                    
-                    <div className="flex my-4 w-2/3 lg:w-1/2">
-                        <a href="https://twitter.com/Prob_Logic" target="_blank" className="flex justify-center items-center text-blue-900 hover:text-gray-500 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out" aria-label="Twitter">
-                            <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24 11.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H8c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.linkedin.com/company/problogic/" target="_blank" rel="noreferrer" className="rounded-full flex justify-center bg-white h-8 text-blue-900  w-8  mx-1 text-center pt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className='fill-current font-black hover:animate-pulse'><circle cx="4.983" cy="5.009" r="2.188"></circle><path d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z"></path></svg>
-                        </a>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
+
             <Footer />
         </>
-
-
-    )
-}
+    );
+};
 
 export default Contact;
